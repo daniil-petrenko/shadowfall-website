@@ -1,0 +1,236 @@
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: #fff;
+  transform: translate(0, -100%);
+  transition: all 1s ease;
+  @media (min-width: $md3) {
+    min-height: rem(71);
+  }
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: rem(24);
+    padding-bottom: rem(24);
+    @media (max-width: $md3) {
+      padding-top: rem(20);
+      padding-bottom: rem(20);
+    }
+    @media (max-width: $md4) {
+      padding-top: rem(16);
+      padding-bottom: rem(16);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 100vw;
+      height: rem(2);
+      transform: translate(-50%, 0);
+      background-color: #000;
+      z-index: -1;
+      @media (max-width: $md1) {
+        display: none;
+      }
+    }
+  }
+  &__logo {
+    position: relative;
+    z-index: 200;
+    flex: 0 0 rem(202);
+    overflow: hidden;
+    @media (max-width: $md4) {
+      flex: 0 0 rem(26);
+    }
+  }
+  &__menu {}
+  &__actions {
+    @media (min-width: $md3) {
+      flex: 0 0 rem(202);
+    }
+    @media (max-width: $md3) {
+      display: flex;
+      align-items: center;
+      gap: rem(30);
+    }
+  }
+  &__button {
+    margin-left: rem(40);
+    font-weight: 700;
+    color: #fff;
+    padding: rem(11) rem(49);
+    background-color: $blueColor;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 1;
+    max-height: rem(40);
+    overflow: hidden;
+    @media (max-width: $md3) {
+      min-width: rem(162);
+    }
+    &::before {
+      content: "";
+      width: rem(18);
+      height: rem(18);
+      background-color: #fff;
+      position: absolute;
+      right: rem(-9);
+      bottom: rem(-9);
+      transform: rotate(45deg);
+      z-index: 5;
+      cursor: default;
+      pointer-events: none;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: #131e9c;
+      }
+    }
+  }
+  &__border {
+    position: absolute;
+    @include adaptivValue('bottom', -24, -10, 1);
+    left: 0;
+    @media (max-width: $md3) {
+      z-index: -1;
+      bottom: rem(-16);
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+.menu {
+  display: flex;
+  justify-content: center;
+  &__body {
+    @media (max-width: $md3) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      top: 0;
+      left: -100%;
+      background-color: #fff;
+      transition: left 0.3s ease 0s;
+      padding: rem(70) rem(15) rem(30) rem(15);
+      &::before {
+        content: '';
+        position: fixed;
+        width: 100%;
+        height: rem(71);
+        top: 0;
+        left: -100%;
+        transition: left 0.3s ease 0s;
+        background-color: #fff;
+        z-index: 2;
+      }
+      &._active {
+        left: 0;
+        &::before {
+          left: 0;
+        }
+      }
+    }
+  }
+  &__list {
+    display: flex;
+    @media (max-width: $md3) {
+      flex-direction: column;
+      row-gap: 25px;
+    }
+    @media (min-width: $md3) {
+      flex-wrap: wrap;
+      row-gap: 5px;
+      column-gap: rem(24);
+    }
+  }
+  // menu-item
+  &__item {
+  }
+  &__link {
+    color: #010410;
+    position: relative;
+    @media (max-width: $md3) {
+      font-size: rem(26);
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: rem(1);
+      background-color: #010410;
+      transition: all 0.3s ease;
+    }
+  }
+  &__icon {}
+}
+
+// Burger
+.icon-menu {
+  display: none;
+  @media (max-width: $md3) {
+    @include adaptivValue('margin-left', 32, 15, 1);
+    position: relative;
+    left: rem(-35);
+    display: flex;
+    flex: 0 0 30px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 5;
+    span {
+      transition: all 0.3s ease 0s;
+      top: calc(50% - 1px);
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #000;
+      &:first-child {
+        top: 0;
+      }
+      &:last-child {
+        top: auto;
+        bottom: 0;
+      }
+    }
+    &._active {
+      span {
+        transform: scale(0);
+        &:first-child {
+          transform: rotate(-45deg);
+          top: calc(50% - 1px);
+        }
+        &:last-child {
+          transform: rotate(45deg);
+          bottom: calc(50% - 1px);
+        }
+      }
+    }
+  }
+}
+
+.header._active {
+  transform: translate(0, 0);
+}

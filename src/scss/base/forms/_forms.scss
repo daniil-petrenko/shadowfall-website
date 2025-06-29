@@ -1,0 +1,28 @@
+// ================ FORM ================
+.form {
+	&__row {
+	}
+	&__column {}
+	&__line {}
+	&__input {}
+	&__button {}
+}
+
+.input {
+	&__error {
+		box-shadow: 0 0 rem(15) red;
+	}
+}
+
+.error-message {
+	position: absolute;
+	top: 0;
+	left: 0;
+  color: red;
+  font-size: rem(12);
+  margin: rem(4) 0 0 rem(9);
+}
+
+// ================ BUTTONS ================
+.btn {
+}
